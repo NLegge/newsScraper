@@ -5,6 +5,7 @@ const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path");
+var request = require("request");
 const cheerio = require("cheerio");
 const axios = require("axios");
 
@@ -38,7 +39,7 @@ app.get("/", function (req, res) {
 // A GET route for scraping the onion website
 app.get("/scrape", function (req, res) {
   // First, we grab the body of the html with request
-  axios.get("https://www.theonion.com/c/news").then(function (response) {
+  axios.get("https://www.theonion.com/c/news-in-brief").then(function (response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
 

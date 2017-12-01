@@ -1,3 +1,16 @@
 body {
   background-image: url("../img/spiration dark.png");
 }
+
+.carousel-caption {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-caption h3 {
+  font-size: 70px;
+}
+
+.carousel-caption p {
+  font-size: 30px;
+}
