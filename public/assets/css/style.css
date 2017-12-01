@@ -14,3 +14,7 @@ body {
 .carousel-caption p {
   font-size: 30px;
 }
+
+.mb-1 {
+  color: black;
+}
