@@ -5,7 +5,7 @@ const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path");
-var request = require("request");
+const request = require("request");
 const cheerio = require("cheerio");
 const axios = require("axios");
 
@@ -27,7 +27,7 @@ app.use(express.static("controller"));
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/database", {
+mongoose.connect("mongodb://localhost/newsScraper", {
   useMongoClient: true
 });
 
