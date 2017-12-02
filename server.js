@@ -67,7 +67,7 @@ app.get("/scrape", function (req, res) {
         .create(result)
         .then(function (dbArticles) {
           // If we were able to successfully scrape and save an Article
-          res.send("Scrape Complete");
+          res.json(dbArticles);
       })
         .catch(function (err) {
           // If an error occurred, send it to the client
@@ -92,9 +92,40 @@ app.get("/articles", function (req, res) {
     });
 });
 
+// Save an article
+app.get("/markSaved/:id", function (req, res) {
+  // Update an article in the articles collection with specified ID
+  db.Articles
+    .update({ _id: req.params.id }}, 
+    {
+      // Set Saved to true for the article we specified
+      $set: {
+        Saved: true
+      }
+    })
+    .then(function (dbArticles) {
+      // If we were able to successfully find Articles, render the saved page
+      res.json(dbArticles);
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
+
 // Render saved articles handlebars page
 app.get("/saved", function (req, res) {
-  res.render("saved");
+  // Grab every document in the Articles collection
+  db.Articles
+    .find({Saved: true})
+    .then(function (dbArticles) {
+      // If we were able to successfully find Articles, render the saved page
+      res.render("saved");
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
 });
 
 // Start the server

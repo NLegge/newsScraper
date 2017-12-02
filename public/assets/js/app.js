@@ -9,7 +9,7 @@ $(document).on("click", "#scrape", function() {
       // For each one
       console.log(data);
       for (let i = 0; i < 20; i++) {
-        // Display the apropos information on the page
+        // Display article data on the page
         $("#articles").append(
           "<div class='list-group'>" + 
             "<span class='list-group-item list-group-item-action flex-column align-items-start'>" +
@@ -19,12 +19,18 @@ $(document).on("click", "#scrape", function() {
               "</div>" + 
               "<p class='mb-1'>" + data[i].Summary + "</p>" + 
             "</span>" + 
-          "</div>");
+          "</div>"
+        );
       }
     });
   });
 });
 
 $(document).on("click", "#save", function() {
-
+  $.ajax({
+    method: "GET",
+    url: "/markSaved/"
+  }).done(function () {
+    alert("Article Saved");
+  });
 });
